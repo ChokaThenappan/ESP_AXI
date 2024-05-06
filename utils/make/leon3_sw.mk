@@ -87,8 +87,8 @@ leon3-soft: $(SOFT_BUILD)/prom.srec $(SOFT_BUILD)/ram.srec
 $(SOFT_BUILD)/systest.exe: systest.c $(SOFT_BUILD)/lib3tests.a
 	$(QUIET_CC)$(XCC) $(XCFLAGS) systest.c $(XLDFLAGS) -o $@
 
-$(SOFT_BUILD)/ram.srec: $(TEST_PROGRAM)
-	$(QUIET_OBJCP)$(CROSS_COMPILE_ELF)objcopy -O srec --gap-fill 0 $< $@
+$(SOFT_BUILD)/ram.txt: $(TEST_PROGRAM)
+	$(QUIET_OBJCP)$(CROSS_COMPILE_ELF)objcopy -O verilog --gap-fill 0 $< $@
 	@if [ -n "$(SIM_DATA_FILES)" ]; then\
 		python3 $(ESP_ROOT)/utils/scripts/srec/modify_srec.py $@ $(SIM_DATA_FILES) $(START_ADDRS);\
 	fi
