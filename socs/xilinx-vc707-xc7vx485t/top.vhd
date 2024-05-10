@@ -139,7 +139,10 @@ component ahb2mig_7series
 end component ;
 
 component edcl_ahbmst_emu is
-  port (
+  generic(
+    hindex         : integer
+   );
+   port (
     clk    :  in  std_ulogic;
     reset  :  in  std_ulogic;
     ahbmo  :  out ahb_mst_out_type;
@@ -487,8 +490,8 @@ begin
   no_eth0 : if SIMULATION = true or CFG_GRETH = 0 generate
     eth0_apbo <= apb_none;
     sgmii0_apbo <= apb_none;
-    --eth0_ahbmo <= ahbm_none;
-    edcl_ahbmo <= ahbm_none;
+    eth0_ahbmo <= ahbm_none;
+    --edcl_ahbmo <= ahbm_none;
     txp <= '0';
     txn <= '1';
     emdc <= '0';
@@ -502,7 +505,7 @@ begin
     port map (
       clk   => chip_refclk,
       reset => rstn,
-      ahbmo => eth0_ahbmo,
+      ahbmo => edcl_ahbmo, --eth0_ahbmo,
       ahbmi => eth0_ahbmi
     );
 
