@@ -59,6 +59,7 @@ misc/unread.vhd
 misc/ahbslm.vhd
 misc/esp_init.vhd
 misc/ahbram_dp.vhd
+misc/edcl_emu.vhd
 misc/rstgen.vhd
 noc/sync_noc_set.vhd
 noc/noc32_xy.vhd
